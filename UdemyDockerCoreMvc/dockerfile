@@ -1,4 +1,8 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:8.0
 WORKDIR /app
-COPY /bin/Release/net8.0/publish .
+COPY . .
+RUN dotnet restore
+RUN dotnet publish UdemyDockerCoreMvc.csproj -c Release -o out
+WORKDIR out
+ENV ASPNETCORE_URLS="http://*:4500"
 ENTRYPOINT ["dotnet", "UdemyDockerCoreMvc.dll"]
