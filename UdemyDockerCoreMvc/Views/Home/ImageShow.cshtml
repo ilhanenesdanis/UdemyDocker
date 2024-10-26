@@ -1,0 +1,19 @@
+@model IEnumerable<string>
+@{
+
+}
+
+<h1>Resimler</h1>
+
+
+@foreach (var image in Model)
+{
+    <img style="width: 100px; height: 100px; float: left; border: 1px solid red;" src="/images/@image" />
+
+    <h3>@image</h3>
+}
+
+<form action="/Home/ImageShow" method="post">
+    <input type="text" name="name"/>
+    <button type="submit">Sil</button>
+</form>
